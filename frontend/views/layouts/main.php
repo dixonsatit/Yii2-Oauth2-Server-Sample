@@ -28,7 +28,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'Frontend',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -40,21 +40,26 @@ AppAsset::register($this);
         ['label' => 'Contact', 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => 'Signup', 'url' => ['/signup']];
+        $menuItems[] = ['label' => 'Login', 'url' => ['/login']];
     } else {
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>';
+       $menuItems[] = ['label' => ' <i class="glyphicon glyphicon-user"></i> '.strtoupper(Yii::$app->user->identity->username), 'items' => [
+            ['label' => '<i class="glyphicon glyphicon-user"></i> Profile', 'url' => ['/user/settings/profile']],
+            '<li role="separator" class="divider"></li>',
+            '<li>'
+                . Html::beginForm(['/logout'], 'post')
+                . Html::submitButton(
+                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    ['class' => 'btn btn-link']
+                )
+                . Html::endForm()
+                . '</li>'
+        ]];
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
+        'encodeLabels' => false
     ]);
     NavBar::end();
     ?>
