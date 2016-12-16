@@ -6,5 +6,8 @@ return [
         'authManager' => [
             'class' => 'dektrium\rbac\components\DbManager',
         ],
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
+        ],
     ],
 ];
