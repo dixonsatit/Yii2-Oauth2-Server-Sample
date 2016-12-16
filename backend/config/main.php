@@ -32,7 +32,6 @@ return [
             'enforceState' => false,
             'allowImplicit' => true,
             // 'allowJwtAccesToken' => true,
-
         ],
     ],
     'components' => [

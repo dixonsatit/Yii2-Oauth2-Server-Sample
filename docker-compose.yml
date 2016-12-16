@@ -36,7 +36,6 @@ services:
     depends_on:
       - db
       - redis
-      - elasticsearch
 
   frontend:
     image: nginx:stable-alpine
