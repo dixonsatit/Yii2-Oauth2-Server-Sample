@@ -15,13 +15,6 @@ return [
             'port' => 6379,
             'database' => 0,
         ],
-        'elasticsearch' => [
-            'class' => 'yii\elasticsearch\Connection',
-            'nodes' => [
-                ['http_address' => 'elasticsearch:9200'],
-                // configure more hosts if you have a cluster
-            ],
-        ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'viewPath' => '@common/mail',
