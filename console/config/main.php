@@ -9,8 +9,16 @@ $params = array_merge(
 return [
     'id' => 'app-console',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log','oauth2'],
     'controllerNamespace' => 'console\controllers',
+    'modules' => [
+        'user' => 'dektrium\user\Module',
+        'oauth2' => [
+            'class' => 'sweelix\oauth2\server\Module',
+            'backend' => 'redis',
+            'db' => 'redis'
+        ],
+    ],
     'components' => [
         'log' => [
             'targets' => [
