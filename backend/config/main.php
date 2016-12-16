@@ -33,6 +33,9 @@ return [
             'allowImplicit' => true,
             // 'allowJwtAccesToken' => true,
         ],
+        'api' => [
+            'class' => 'backend\modules\api\Module',
+        ],
     ],
     'components' => [
         'request' => [
@@ -67,8 +70,18 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-            ],
+            'rules' => array_merge(
+                require(__DIR__ . '/../../common/config/_rulesUser.php'),[
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => [
+                        'api/v1/user'
+                    ],
+                    'extraPatterns' => [
+                        'GET info' => 'info',
+                    ]
+                ]
+            ])
         ],
     ],
     'params' => $params,
