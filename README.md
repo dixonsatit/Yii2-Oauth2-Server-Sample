@@ -88,3 +88,26 @@ Client created :
  - name: doh
  - redirectUri: Array
 ```
+
+config in .env
+
+```
+# ----------------------------------------------------------------
+# ====================== Auth Client =============================
+# ----------------------------------------------------------------
+CLIENT_ID=04660095397352d5784b3b720c51a7663b7f9b24
+CLIENT_SECRET=1d222367d15f696045047c7ffeb7f2e1611204e8
+```
+
+config url oauth2 server url in `frontend/components/DohClient.php`
+
+```
+class DohClient extends OAuth2
+{
+    public $authUrl = 'https://localhost:9091/oauth2/authorize/index';
+
+    public $tokenUrl = 'https://localhost:9091/oauth2/token/index';
+
+    public $apiBaseUrl = 'https://localhost:9091/api/v1/user/info';
+...
+```
