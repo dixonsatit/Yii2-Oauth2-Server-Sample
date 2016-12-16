@@ -1,6 +1,7 @@
 #!/usr/bin/env php
 composer config -g github-oauth.github.com $GITHUB_API_TOKEN
 composer install
+php init --env=Development --overwrite=n
 
 echo "RUN:  Migration initialization data."
 php yii migrate/up --migrationPath=@yii/rbac/migrations --interactive=0
