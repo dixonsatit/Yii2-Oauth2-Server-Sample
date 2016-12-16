@@ -10,14 +10,42 @@ return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
-    'bootstrap' => ['log'],
-    'modules' => [],
+    'bootstrap' => ['log','oauth2'],
+    'modules' => [
+        'rbac' => 'dektrium\rbac\RbacWebModule',
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            'enableFlashMessages' => false,
+            'admins' => ['dixon'],
+            'adminPermission' => 'Admin',
+            'urlPrefix'=> 'auth',
+            'enableRegistration'=> false,
+            'modelMap' => [
+                'User' => 'common\models\OauthUser',
+            ],
+        ],
+        'oauth2' => [
+            'class' => 'sweelix\oauth2\server\Module',
+            'backend' => 'redis',
+            'db' => 'redis',
+            'identityClass' => 'common\models\OauthUser',
+            'enforceState' => false,
+            'allowImplicit' => true,
+            // 'allowJwtAccesToken' => true,
+
+        ],
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ],
+            'enableCsrfValidation' => false,
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'class' => 'sweelix\oauth2\server\web\User',
+            'identityClass' => 'dektrium\user\models\User',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],
