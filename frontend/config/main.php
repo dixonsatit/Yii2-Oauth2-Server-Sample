@@ -11,6 +11,16 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'modules' => [
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            'enableFlashMessages' => false,
+            'admins' => ['dixon'],
+            'adminPermission' => 'Admin',
+            //'urlPrefix'=>'auth'
+        ],
+        'rbac' => 'dektrium\rbac\RbacWebModule',
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
