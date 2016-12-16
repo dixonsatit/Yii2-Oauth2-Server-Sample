@@ -25,7 +25,6 @@ MYSQL_PORT=3306
 # ----------------------------------------------------------------
 CLIENT_ID=clientId
 CLIENT_SECRET=clientSecret
-API_URL=http://app-frontend.dev:9091
 
 # ----------------------------------------------------------------
 # ====================== Github API Token ========================
@@ -67,3 +66,25 @@ sh install.sh
 frontend: http://localhost:9090
 
 backend: http://localhost:9091
+
+## Create new Oauth client
+
+ssh to container
+```
+docker exec -it oauth2_php sh
+```
+
+create auth client user
+```
+./yii oauth2:client/create --name=doh --userId=1 --redirectUri=http://app-frontend.dev:9091/user/security/auth?
+authclient=doh
+```
+
+result
+```
+Client created :
+ - id: 04660095397352d5784b3b720c51a7663b7f9b24
+ - secret: 1d222367d15f696045047c7ffeb7f2e1611204e8
+ - name: doh
+ - redirectUri: Array
+```
