@@ -49,9 +49,23 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-            ],
+            'rules' => array_merge(
+                require(__DIR__ . '/../../common/config/_rulesUser.php'),[
+            ])
         ],
+        'authClientCollection' => [
+            'class'   => \yii\authclient\Collection::className(),
+            'httpClient' => [
+                'transport' => 'yii\httpclient\CurlTransport',
+            ],
+            'clients' => [
+               'doh' => [
+                    'class' => 'frontend\components\DohClient',
+                    'clientId' => getenv('CLIENT_ID'),
+                    'clientSecret' => getenv('CLIENT_SECRET'),
+                ],
+            ],
+        ]
     ],
     'params' => $params,
 ];
