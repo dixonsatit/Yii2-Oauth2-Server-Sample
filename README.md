@@ -61,3 +61,9 @@ docker exec -it oauth2_php sh
 
 sh install.sh
 ```
+
+## Access url
+
+frontend: http://localhost:9090
+
+backend: http://localhost:9091
