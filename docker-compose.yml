@@ -36,7 +36,6 @@ services:
     depends_on:
       - db
       - redis
-
   frontend:
     image: nginx:stable-alpine
     container_name: oauth2_frontend
@@ -53,7 +52,6 @@ services:
       - frontend
     depends_on:
       - php
-
   backend:
     image: nginx:stable-alpine
     container_name: oauth2_backend

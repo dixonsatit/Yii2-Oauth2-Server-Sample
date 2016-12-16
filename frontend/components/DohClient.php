@@ -7,11 +7,11 @@ use dektrium\user\clients\ClientInterface;
 
 class DohClient extends OAuth2
 {
-    public $authUrl = 'https://sso.sathit.me/oauth2/authorize/index';
+    public $authUrl = 'http://app-frontend.dev:9091/oauth2/authorize/index';
 
-    public $tokenUrl = 'https://sso.sathit.me/oauth2/token/index';
+    public $tokenUrl = 'http://app-frontend.dev:9091/oauth2/token/index';
 
-    public $apiBaseUrl = 'https://sso.sathit.me/api/v1';
+    public $apiBaseUrl = 'http://app-frontend.dev:9091/api/v1/user/info';
 
     protected function defaultName()
     {
